@@ -23,7 +23,7 @@ export default new Router({
             path: '/',
             name: 'index',
             component: Home,
-            redirect: '/teacher',
+            redirect: '/login',
             children: [
                 {
                     path: 'teacher',
