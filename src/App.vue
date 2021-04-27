@@ -1,10 +1,11 @@
 <template>
-    <div id="app-teacher-task">
-        教师任务量管理系统
+    <div id="app">
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
+
 export default {
     name: 'app-teacher-task'
 }
