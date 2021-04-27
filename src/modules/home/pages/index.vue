@@ -21,7 +21,7 @@
                 <el-menu-item index="college-teacher">老师列表</el-menu-item>
                 <el-menu-item index="college-task">任务列表</el-menu-item>
             </el-submenu>
-            <el-submenu index="department" disabled>
+            <el-submenu index="department">
                 <template slot="title">
                     <i class="icon-location"></i>
                     <span>系部管理</span>
@@ -35,6 +35,9 @@
             </el-menu-item>
         </el-menu>
         <div class="home-content">
+            <header class="home-header">
+                header头部
+            </header>
             <router-view></router-view>
         </div>
     </div>
@@ -72,6 +75,11 @@ export default {
     }
     .home-content {
         margin-left: 200px;
+        flex: 1;
+        .home-header {
+            height: 56px;
+            border-bottom: 1px solid grey;
+        }
     }
 }
 </style>
