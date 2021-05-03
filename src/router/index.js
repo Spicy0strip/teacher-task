@@ -2,10 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/modules/home/pages/login.vue'
 import Home from '@/modules/home/pages/index.vue'
-import Teacher from '@/modules/teacher/pages/index.vue'
 
 Vue.use(Router)
-console.log('ddd', Login);
 
 export default new Router({
     routes: [
@@ -24,8 +22,49 @@ export default new Router({
                 {
                     path: 'teacher',
                     name: 'teacher',
-                    component: Teacher,
+                    component: (() =>
+                    import(/* webpackChunkName: 'teacher' */ '@/modules/teacher/pages/index.vue')),
                 },
+                {
+                    path: 'college',
+                    name: 'college',
+                    component: (() =>
+                    import(/* webpackChunkName: 'college' */ '@/modules/college/pages/index.vue')),
+                    children: [
+                        {
+                            path: 'teacher',
+                            name: 'college-teacher',
+                            component: (() =>
+                    import(/* webpackChunkName: 'college' */ '@/modules/college/pages/college-teacher.vue')),
+                        },
+                        {
+                            path: 'task',
+                            name: 'college-task',
+                            component: (() =>
+                    import(/* webpackChunkName: 'college' */ '@/modules/college/pages/college-task.vue')),
+                        }
+                    ]
+                },
+                {
+                    path: 'department',
+                    name: 'department',
+                    component: (() =>
+                    import(/* webpackChunkName: 'department' */ '@/modules/department/pages/index.vue')),
+                    children: [
+                        {
+                            path: 'assign-task',
+                            name: 'assign-task',
+                            component: (() =>
+                    import(/* webpackChunkName: 'department' */ '@/modules/department/pages/assign-task.vue')),
+                        },
+                        {
+                            path: 'unassign-task',
+                            name: 'unassign-task',
+                            component: (() =>
+                    import(/* webpackChunkName: 'department' */ '@/modules/department/pages/unassign-task.vue')),
+                        }
+                    ]
+                }
             ],
         },
         {

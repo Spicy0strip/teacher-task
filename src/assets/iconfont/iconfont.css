@@ -1,0 +1,39 @@
+@font-face {
+  font-family: "teacher"; /* Project id 2516788 */
+  src: url('iconfont.woff2?t=1620017377264') format('woff2'),
+       url('iconfont.woff?t=1620017377264') format('woff'),
+       url('iconfont.ttf?t=1620017377264') format('truetype');
+}
+
+.teacher {
+  font-family: "teacher" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.teacher-taskfabu:before {
+  content: "\e606";
+}
+
+.teacher-taskfaxian:before {
+  content: "\e605";
+}
+
+.teacher-taskshezhi:before {
+  content: "\e604";
+}
+
+.teacher-taskshouye:before {
+  content: "\e603";
+}
+
+.teacher-task003-school:before {
+  content: "\e602";
+}
+
+.teacher-taskxianxinglaoshi:before {
+  content: "\e601";
+}
+

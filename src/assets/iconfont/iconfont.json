@@ -1,0 +1,51 @@
+{
+  "id": "2516788",
+  "name": "teacher-task",
+  "font_family": "teacher",
+  "css_prefix_text": "teacher-task",
+  "description": "教师任务量管理系统",
+  "glyphs": [
+    {
+      "icon_id": "21295438",
+      "name": "系部负责人",
+      "font_class": "fabu",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "21295433",
+      "name": "教师",
+      "font_class": "faxian",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "21295432",
+      "name": "管理员",
+      "font_class": "shezhi",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "21295431",
+      "name": "学院负责人",
+      "font_class": "shouye",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "21295376",
+      "name": "LOGO",
+      "font_class": "003-school",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "21295355",
+      "name": "默认头像",
+      "font_class": "xianxinglaoshi",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    }
+  ]
+}
