@@ -66,9 +66,10 @@ export default {
                             type: 'success',
                             message: '登录成功',
                         });
-                        // this.$router.push({
-                        //     path: '/system'
-                        // })
+                        this.$router.push({
+                            path: '/system'
+                        })
+                       this.$store.commit('sso:user:login', data);
                     } else {
                         MessageBox({
                             type: 'error',

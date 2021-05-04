@@ -3,6 +3,11 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store.js';
+
+import { Loading } from 'element-ui';
+Vue.use(Loading);
+
 import '@/assets/iconfont/iconfont.css'
 
 Vue.config.productionTip = false
@@ -12,6 +17,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

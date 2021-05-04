@@ -5,19 +5,27 @@
 </template>
 
 <script>
-
+import { checkMySelfInfo } from '@/services/login.js'
 export default {
-    name: 'app-teacher-task'
+    name: 'app-teacher-task',
+    async created() {
+        const { name } = this.$route;
+        if (name === 'login') {
+            return;
+        }
+        const res = await checkMySelfInfo();
+        const { code, data, message } = res.data;
+
+        if (code === 200) {
+            this.$store.commit('sso:user:login', data);
+        } else {
+            this.$router.push({
+                path: '/login',
+            });
+        }
+    }
 }
 </script>
 
 <style scoped lang="less">
-#app {
-    // font-family: "Avenir", Helvetica, Arial, sans-serif;
-    // -webkit-font-smoothing: antialiased;
-    // -moz-osx-font-smoothing: grayscale;
-    // text-align: center;
-    // color: #2c3e50;
-    // margin-top: 60px;
-}
 </style>

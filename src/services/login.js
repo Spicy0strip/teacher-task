@@ -8,16 +8,19 @@ const baseURL = "http://39.96.82.21/ea";
 // axios.defaults.headers.common['Authorization'] = ''; // 设置请求头为 Authorization
 
 const $http = axios.create({
-    // withCredentials: true,
+    withCredentials: true,
     // changeOrigin: true,
     // baseURL: 'http://172.20.10.6/ea',
 })
 
 export async function doLogin(params) {
-    // console.log('dd', $http);
-    return await axios.get('/api/login', {
-        params,
-        withCredentials: true,
-    });
+    return await $http.get('/api/login', { params });
 }
 
+export async function checkMySelfInfo() {
+    return await $http.get('/api/querySelf');
+}
+
+export async function updatePassword(params) {
+    return await $http.get('/api/changePassword', { params });
+}
