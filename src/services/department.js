@@ -15,5 +15,5 @@ export async function getDepartmentTeachers(params) {
 
 // 分配任务
 export async function assignTask(params) {
-    return await $http.post('/api/receiveTeachingTask', { params });
+    return await $http.get('/api/receiveTeachingTask', { params });
 }

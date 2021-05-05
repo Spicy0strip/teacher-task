@@ -40,18 +40,19 @@
                 label="教师"
             >
                 <el-select
-                    v-model="formData.semester"
+                    v-model="formData.jobNumber"
                     placeholder="请选择老师"
                     @change="updateData"
                 >
                     <el-option
-                        v-for="semester in ['2021-2', '2021-1', '2020-2', '2020-1', '2019-2', '2018-2', '2018-1']"
-                        :key="semester"
-                        :value="semester"
-                        :label="semester"
+                        v-for="item in teachers"
+                        :key="item.id"
+                        :value="item.jobNumber"
+                        :label="item.name"
                     ></el-option>
                 </el-select>
             </el-form-item>
+            <el-button @click="createTask" type="primary">创建任务</el-button>
         </el-form>
         <el-table
             :data="tasks"
@@ -73,65 +74,73 @@
             >
             </el-table-column>
             <el-table-column
-                prop="teachingTask.courseCode"
+                prop="courseCode"
                 label="课程代码"
             >
             </el-table-column>
             <el-table-column
-                prop="teachingTask.courseName"
+                prop="courseName"
                 label="课程名称"
             ></el-table-column>
             <el-table-column
-                prop="teachingTask.type"
+                prop="type"
                 label="课程类型"
             >
             </el-table-column>
             <el-table-column
-                prop="teachingTask.studentNumbs"
+                prop="studentNumbs"
                 label="学生人数"
             >
             </el-table-column>
             <el-table-column
-                prop="teachingTask.hours"
+                prop="hours"
                 label="课时"
             >
             </el-table-column>
             <el-table-column
-                prop="teachingTask.major"
+                prop="major"
                 label="专业"
             ></el-table-column>
             <el-table-column
-                prop="teachingTask.grade"
+                prop="grade"
                 label="年级"
             ></el-table-column>
             <el-table-column
-                prop="teachingTask.classes"
+                prop="classes"
                 label="班级"
             >
             </el-table-column>
             <el-table-column
-                prop="teachingTask.semester"
+                prop="semester"
                 label="学期"
             ></el-table-column>
             <el-table-column
-                prop="teachingTask.insertTime"
+                prop="insertTime"
                 label="插入时间"
             ></el-table-column>
             <el-table-column
-                prop="teachingTask.updateTime"
+                prop="updateTime"
                 label="更新时间"
             ></el-table-column>
             <el-table-column
-                prop="teachingTask.workload"
+                prop="workload"
                 label="工作量"
             ></el-table-column>
         </el-table>
+        <create-task-dialog
+            v-if="showCreateTaskDialog"
+            :visible="showCreateTaskDialog"
+            @onclose="showCreateTaskDialog = false"
+        >
+        </create-task-dialog>
     </div>
 </template>
 <script>
-import { Table, TableColumn, Form, FormItem, Input, Select, Option } from 'element-ui';
+import { Table, TableColumn, Form, FormItem, Input, Select, Option, Button } from 'element-ui';
+import CreateTaskDialog from './components/create-task-dialog.vue';
 
 import { getCollegeTask } from '@/services/college.js';
+import { getDepartmentTeachers } from '@/services/department.js';
 export default {
     name: 'college-task',
     components: {
@@ -142,28 +151,35 @@ export default {
         ElInput: Input,
         ElSelect: Select,
         ElOption: Option,
+        ElButton: Button,
+        CreateTaskDialog,
     },
     data() {
         return {
             loading: false,
             formData: {
                 grade: '',
-                semester: '2021-1'
+                semester: '2021-1',
+                jobNumber: undefined,
             },
             tasks: [],
+            teachers: [],
+            showCreateTaskDialog: false,
         }
     },
     computed: {
         query() {
-            const { grade, semester } = this.formData;
+            const { grade, semester, jobNumber } = this.formData;
             return {
                 grade,
                 semester,
+                jobNumber,
             };
         }
     },
     async created() {
         await this.updateData();
+        this.updateDepartmentTeachers();
     },
     methods: {
         async updateData() {
@@ -174,9 +190,22 @@ export default {
                 this.tasks = data ? data : [];
             }
             this.loading = false;
+        },
+        createTask() {
+            this.showCreateTaskDialog = true;
+        },
+        async updateDepartmentTeachers() {
+            const res = await getDepartmentTeachers();
+            const { code, data, message } = res.data;
+            if (code === 200) {
+                this.teachers = data ? data : [];
+            }
         }
     }
 }
 </script>
 <style lang="less" scoped>
+.page-component-container__college-task {
+    padding: 24px;
+}
 </style>

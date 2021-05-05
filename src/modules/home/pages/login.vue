@@ -1,6 +1,9 @@
 <template>
     <div class="page-conponent-container_login">
+        <img class="xupt" src='@/assets/images/xupt.png' />
+        <img class="logo" src="@/assets/images/js.png" />
         <el-form
+            class="login"
             :model="formData"
             label-width="80px"
             ref="login"
@@ -84,4 +87,23 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+.page-conponent-container_login {
+    .xupt {
+        width: 56px;
+        float: left;
+        margin-top: 45px;
+        margin-left: 45px;
+    }
+    img.logo {
+        margin-left: 15%;
+        width: 900px;
+    }
+    .login {
+        width: 600px;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 150px;
+    }
+}
 </style>

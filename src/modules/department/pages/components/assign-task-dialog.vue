@@ -9,12 +9,12 @@
             <el-form
                 :model="formData"
                 label-width="70px"
+                ref="assign"
             >
                 <el-form-item
                     label="任务名称"
-                    prop="task.departmentTask.courseName"
                 >
-                    <el-input disabled v-model="task.courseName"></el-input>
+                    <el-input disabled v-model="task.departmentTask.courseName"></el-input>
                 </el-form-item>
                 <el-form-item
                     label="教师"
@@ -45,7 +45,7 @@
 import { Dialog, Button, Form, FormItem, Input, Select, Option, Message, MessageBox } from 'element-ui';
 
 import { mapState } from 'vuex';
-import { getDepartmentTeachers } from '@/services/department.js';
+import { getDepartmentTeachers, assignTask } from '@/services/department.js';
 export default {
     name: 'assign-task-dialog',
     components: {

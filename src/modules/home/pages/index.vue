@@ -3,8 +3,6 @@
         <el-menu
             :default-active="activeName"
             class="home-menu home-menu-item"
-            @open="handleOpen"
-            @close="handleClose"
             background-color="#545c64"
             text-color="#fff"
             active-text-color="#ffd04b"
@@ -14,7 +12,7 @@
                 <i class="teacher">&#xe604;</i>
                 <span slot="title">系统管理</span>
             </el-menu-item>
-            <el-submenu :disabled="userInfo.loginLevel !== 2" index="college-teache">
+            <el-submenu :disabled="userInfo.loginLevel !== 2" index="college-teacher">
                 <template slot="title">
                     <i class="teacher">&#xe603;</i>
                     <span>学院管理</span>
@@ -28,7 +26,7 @@
                     <span>任务列表</span>
                 </el-menu-item>
             </el-submenu>
-            <el-submenu :disabled="userInfo.loginLevel !== 4" index="department">
+            <el-submenu :disabled="userInfo.loginLevel !== 4" index="unassign-task">
                 <template slot="title">
                     <i class="teacher">&#xe606;</i>
                     <span>系部管理</span>
@@ -108,16 +106,24 @@ export default {
             userInfo: state => state.userInfo,
         }),
         activeName() {
-            return this.$route.name;
+            const level = ['system', 'college-teacher', 'teacher', 'unassign-task'];
+            if (this.userInfo) {
+                return this.$route.name !== level[this.userInfo.loginLevel - 1] ? level[this.userInfo.loginLevel - 1] : this.$route.name;
+            }
+            return '';
+        }
+    },
+    watch: {
+        activeName: {
+            immediate: true,
+            handler(val) {
+                if (val) {
+                    this.$router.push({ name: val }).catch(() => {});
+                }
+            }
         }
     },
     methods: {
-        handleOpen() {
-
-        },
-        handleClose() {
-
-        },
         async handleEvent(command) {
             if (command === 'checkProfile') {
                 let show = true;
