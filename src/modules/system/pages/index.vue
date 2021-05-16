@@ -32,6 +32,7 @@
         <div class="teacher-content">
             <el-form
                 :model="formData"
+                :inline="true"
             >
                 <el-form-item
                     label="学院"
@@ -48,6 +49,9 @@
                             :value="department.collegeCode"
                         ></el-option>
                     </el-select>
+                </el-form-item>
+                <el-form-item >
+                    <el-button @click="addTeacher" type="primary">添加教师</el-button>
                 </el-form-item>
             </el-form>
             <el-table
@@ -83,11 +87,18 @@
                 </el-table-column>
             </el-table>
         </div>
+        <add-teacher-dialog
+            v-if="showAddTeacherDialog"
+            :visible="showAddTeacherDialog"
+            @onclose="showAddTeacherDialog = false; updateTeachers();"
+            :departments="departments"
+        ></add-teacher-dialog>
     </div>
 </template>
 <script>
 
-import { Row, Col, Form, Select, FormItem, Option, Table, TableColumn, Link, Message, MessageBox } from 'element-ui';
+import { Row, Col, Form, Select, FormItem, Option, Table, TableColumn, Link, Message, MessageBox, Button } from 'element-ui';
+import AddTeacherDialog from './components/add-taecher-dialog.vue';
 
 import { getEveryModulePeo, getAllTeachers, getAllDepartments, stopTeacher, unBanTeacher } from '@/services/system.js';
 
@@ -102,7 +113,9 @@ export default {
         ElOption: Option,
         ElTable: Table,
         ElTableColumn: TableColumn,
+        ElButton: Button,
         ElLink: Link,
+        AddTeacherDialog,
     },
     data() {
         return {
@@ -113,6 +126,7 @@ export default {
                 collegeCode: '',
             },
             departments: [],
+            showAddTeacherDialog: false,
         }
     },
     async created() {
@@ -184,6 +198,9 @@ export default {
                     title: '操作失败',
                 });
             }
+        },
+        addTeacher() {
+            this.showAddTeacherDialog = true;
         }
     }
 }

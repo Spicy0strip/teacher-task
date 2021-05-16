@@ -27,3 +27,7 @@ export async  function unBanTeacher(params) {
 export async function getAllTeachers(params) {
     return await $http.get('/api/queryAllTeachers', { params });
 }
+
+export async function addTeacher(params) {
+    return await $http.post('/api/addTeacher', params);
+}

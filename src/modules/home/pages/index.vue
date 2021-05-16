@@ -25,6 +25,10 @@
                     <i class="teacher">&#xe603;</i>
                     <span>任务列表</span>
                 </el-menu-item>
+                <el-menu-item index="college-assess" route="/college/assess">
+                    <i class="teacher">&#xe603;</i>
+                    <span>考核</span>
+                </el-menu-item>
             </el-submenu>
             <el-submenu :disabled="userInfo.loginLevel !== 4" index="unassign-task">
                 <template slot="title">
@@ -54,6 +58,7 @@
                     <el-dropdown-menu slot="dropdown">
                         <el-dropdown-item command="updatePassword">修改密码</el-dropdown-item>
                         <el-dropdown-item command="checkProfile">个人信息</el-dropdown-item>
+                        <!-- <el-dropdown-item command="exitLoginout">退出登录</el-dropdown-item> -->
                     </el-dropdown-menu>
                     </el-dropdown>
             </header>
@@ -144,6 +149,9 @@ export default {
             if (command === 'updatePassword') {
                 this.showUpdatPasswordeDialog = true;
             }
+            // if (command === 'exitLoginout') {
+
+            // }
         },
     }
 }

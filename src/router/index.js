@@ -42,6 +42,12 @@ export default new Router({
                             name: 'college-task',
                             component: (() =>
                     import(/* webpackChunkName: 'college' */ '@/modules/college/pages/college-task.vue')),
+                        },
+                        {
+                            path: 'assess',
+                            name: 'college-assess',
+                            component: (() =>
+                    import(/* webpackChunkName: 'college' */ '@/modules/college/pages/college-assess.vue')),
                         }
                     ]
                 },

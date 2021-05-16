@@ -62,7 +62,7 @@
             </el-table-column>
             <el-table-column
                 prop="hours"
-                label="课时"
+                label="学时"
             >
             </el-table-column>
             <el-table-column
