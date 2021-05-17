@@ -13,3 +13,11 @@ export async function getTeacherInfo(params) {
 export async function getProfile(params) {
     return await $http.get('/api/queryTeacherSelf', { params });
 }
+
+export async function checkAssess(params) {
+    return await $http.get('/api//queryAssess', { params });
+}
+
+export async function verifyAssess(params) {
+    return await $http.get('/api/verifyAssess', { params })
+}

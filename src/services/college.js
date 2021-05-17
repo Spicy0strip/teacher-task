@@ -41,3 +41,12 @@ export async function getGrade(params) {
 export async function createTask(params) {
     return await $http.get('/api/receiveDepartmentTask', { params });
 }
+
+// check教师考核情况
+export async function getAssesses(params) {
+    return await $http.get('/api/queryTasks', { params });
+}
+
+export async function assessTeacher(body) {
+    return await $http.post('/api/assess', body);
+}

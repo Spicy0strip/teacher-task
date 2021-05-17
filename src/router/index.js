@@ -68,6 +68,12 @@ export default new Router({
                             name: 'unassign-task',
                             component: (() =>
                     import(/* webpackChunkName: 'department' */ '@/modules/department/pages/unassign-task.vue')),
+                        },
+                        {
+                            path: 'department-assess',
+                            name: 'department-assess',
+                            component: (() =>
+                    import(/* webpackChunkName: 'department' */ '@/modules/department/pages/department-assess.vue')),
                         }
                     ]
                 }

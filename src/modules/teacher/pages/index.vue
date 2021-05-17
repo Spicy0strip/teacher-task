@@ -36,6 +36,11 @@
                     ></el-option>
                 </el-select>
             </el-form-item>
+            <el-form-item>
+                <el-button type="primary" @click="checkAssess">
+                    查看考核
+                </el-button>
+            </el-form-item>
         </el-form>
         <el-table
             :data="teacherInfo.teachingTask"
@@ -95,10 +100,17 @@
                 label="工作量"
             ></el-table-column>
         </el-table>
+        <check-assess-dialog
+            v-if="showCheckAssessDialog"
+            :visible="showCheckAssessDialog"
+            @onclose="showCheckAssessDialog = false;"
+        >
+        </check-assess-dialog>
     </div>
 </template>
 <script>
-import { Table, TableColumn, Form, FormItem, Select, Option } from 'element-ui';
+import { Table, TableColumn, Form, FormItem, Select, Option, Button } from 'element-ui';
+import CheckAssessDialog from './components/check-assess-dialog.vue';
 
 import { mapState } from 'vuex';
 
@@ -112,6 +124,8 @@ export default {
         ElOption: Option,
         ElTable: Table,
         ElTableColumn: TableColumn,
+        ElButton: Button,
+        CheckAssessDialog,
     },
     data() {
         return {
@@ -123,6 +137,7 @@ export default {
                 grade: '',
                 semester: '2021-1'
             },
+            showCheckAssessDialog: false,
         }
     },
     async created() {
@@ -158,6 +173,9 @@ export default {
             const { code, data, message } = res.data;
             this.teacherInfo = data;
             this.loading = false;
+        },
+        checkAssess() {
+            this.showCheckAssessDialog = true;
         }
     }
 }

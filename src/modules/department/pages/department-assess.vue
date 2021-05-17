@@ -1,16 +1,5 @@
 <template>
-    <div class="page-component-container__college-assess" v-loading="loading">
-        <el-alert
-            type="warning"
-            effect="dark"
-            class="alert-warning"
-        >
-            <template slot="title">
-                <p>教学为主型，要求学时200</p>
-                <p>科研为主型，要求学时90</p>
-                <p>教学科研并重型，要求140学时/学期</p>
-            </template>
-        </el-alert>
+    <div class="page-component-container__department-assess" v-loading="loading">
         <el-table
             :data="assesses"
             :loading="loading"
@@ -47,13 +36,6 @@
                     <span>{{row.reach ? '达标' : '不达标'}}</span>
                 </template>
             </el-table-column>
-            <el-table-column
-                label="操作"
-            >
-                <template slot-scope="{ row }">
-                    <el-link v-if="row.needAssess" type="primary" @click="assess(row)">考核</el-link>
-                </template>
-            </el-table-column>
         </el-table>
     </div>
 </template>
@@ -61,7 +43,7 @@
 import { Table, TableColumn, Link, Message, MessageBox, Alert } from 'element-ui';
 import { assessTeacher, getAssesses } from '@/services/college.js';
 export default {
-    name: 'college-assess',
+    name: 'department-assess',
     components: {
         ElTable: Table,
         ElTableColumn: TableColumn,
@@ -86,29 +68,12 @@ export default {
             const { code, data, message } = res.data;
             this.assesses = data ? data : [];
             this.loading = false;
-        },
-        async assess(row) {
-            const res = await assessTeacher(row);
-            const { code, data, message } = res.data;
-            if (code === 200) {
-                Message({
-                    message: '考核操作成功',
-                    type: 'success',
-                })
-                this.updateData();
-            } else {
-                 MessageBox({
-                    type: 'error',
-                    message,
-                    title: '操作失败',
-                });
-            }
         }
     }
 }
 </script>
 <style lang="less" scoped>
-.page-component-container__college-assess {
+.page-component-container__department-assess {
     padding: 24px;
     .alert-warning {
         margin-bottom: 24px;

@@ -43,6 +43,10 @@
                     <i class="teacher">&#xe606;</i>
                     <span>已分配任务</span>
                 </el-menu-item>
+                <el-menu-item :disabled="userInfo.loginLevel !== 4" index="department-assess" route="/department/department-assess">
+                    <i class="teacher">&#xe606;</i>
+                    <span>考核</span>
+                </el-menu-item>
             </el-submenu>
             <el-menu-item :disabled="userInfo.loginLevel !== 3" index="teacher" route="/teacher">
                 <i class="teacher">&#xe605;</i>
