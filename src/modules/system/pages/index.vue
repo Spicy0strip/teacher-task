@@ -53,6 +53,16 @@
                 <el-form-item >
                     <el-button @click="addTeacher" type="primary">添加教师</el-button>
                 </el-form-item>
+                <el-form-item >
+                    <json-excel
+                        class = "export-excel-wrapper"
+                        :data="teachers"
+                        :fields="json_fields"
+                        name="filename.xls"
+                    >
+                        <el-button type="primary">导出</el-button>
+                    </json-excel>
+                </el-form-item>
             </el-form>
             <el-table
                 :data="teachers"
@@ -99,6 +109,7 @@
 
 import { Row, Col, Form, Select, FormItem, Option, Table, TableColumn, Link, Message, MessageBox, Button } from 'element-ui';
 import AddTeacherDialog from './components/add-taecher-dialog.vue';
+import JsonExcel from 'vue-json-excel'
 
 import { getEveryModulePeo, getAllTeachers, getAllDepartments, stopTeacher, unBanTeacher } from '@/services/system.js';
 
@@ -116,6 +127,7 @@ export default {
         ElButton: Button,
         ElLink: Link,
         AddTeacherDialog,
+        JsonExcel,
     },
     data() {
         return {
@@ -127,6 +139,12 @@ export default {
             },
             departments: [],
             showAddTeacherDialog: false,
+            json_fields: {
+                '工号': 'teacherWrapper.teacherDetail.jobNumber',
+                '姓名': 'teacherWrapper.teacherDetail.name',
+                '职称': 'teacherWrapper.title',
+                '学院': 'teacherWrapper.college',
+            }
         }
     },
     async created() {

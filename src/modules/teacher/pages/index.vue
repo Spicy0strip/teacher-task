@@ -41,6 +41,16 @@
                     查看考核
                 </el-button>
             </el-form-item>
+            <el-form-item >
+                <json-excel
+                    class = "export-excel-wrapper"
+                    :data="teacherInfo.teachingTask"
+                    :fields="json_fields"
+                    name="filename.xls"
+                >
+                    <el-button type="primary">导出</el-button>
+                </json-excel>
+            </el-form-item>
         </el-form>
         <el-table
             :data="teacherInfo.teachingTask"
@@ -111,6 +121,7 @@
 <script>
 import { Table, TableColumn, Form, FormItem, Select, Option, Button } from 'element-ui';
 import CheckAssessDialog from './components/check-assess-dialog.vue';
+import JsonExcel from 'vue-json-excel'
 
 import { mapState } from 'vuex';
 
@@ -126,6 +137,7 @@ export default {
         ElTableColumn: TableColumn,
         ElButton: Button,
         CheckAssessDialog,
+        JsonExcel,
     },
     data() {
         return {
@@ -138,6 +150,20 @@ export default {
                 semester: '2021-1'
             },
             showCheckAssessDialog: false,
+            json_fields: {
+                '课程代码': 'courseCode',
+                '课程名称': 'courseName',
+                '课程类型': 'type',
+                '学生人数': 'studentNumbs',
+                '学时': 'hours',
+                '专业': 'major',
+                '年级': 'grade',
+                '班级': 'classes',
+                '学期': 'semester',
+                '插入时间': 'insertTime',
+                '更新时间': 'updateTime',
+                '工作量': 'workload',
+            }
         }
     },
     async created() {

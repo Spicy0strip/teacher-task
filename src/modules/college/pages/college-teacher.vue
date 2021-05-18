@@ -1,5 +1,19 @@
 <template>
     <div class="page-component-container__college-teacher" v-loading="loading">
+        <el-form
+            :inline="true"
+        >
+            <el-form-item>
+                <json-excel
+                    class = "export-excel-wrapper"
+                    :data="teachers"
+                    :fields="json_fields"
+                    name="filename.xls"
+                >
+                    <el-button type="primary">导出</el-button>
+                </json-excel>
+            </el-form-item>
+        </el-form>
         <el-table
             :data="teachers"
             :loading="loading"
@@ -41,8 +55,10 @@
     </div>
 </template>
 <script>
-import { Table, TableColumn, Link } from 'element-ui';
+import { Table, TableColumn, Link, Form, FormItem, Button } from 'element-ui';
 import { getAllTeachers, getAllDepartments, stopTeacher, unBanTeacher } from '@/services/system.js';
+import JsonExcel from 'vue-json-excel';
+
 import UpdateLevelDialog from './components/update-level-dialog.vue';
 export default {
     name: 'college-teacher',
@@ -50,7 +66,11 @@ export default {
         ElTable: Table,
         ElTableColumn: TableColumn,
         ElLink: Link,
+        ElForm: Form,
+        ElFormItem: FormItem,
+        ElButton: Button,
         UpdateLevelDialog,
+        JsonExcel,
     },
     data() {
         return {
@@ -58,6 +78,12 @@ export default {
             teachers: [],
             currTeacherInfo: null,
             showUpdateLevelDialog: false,
+            json_fields: {
+                '工号': 'teacherWrapper.teacherDetail.jobNumber',
+                '姓名': 'teacherWrapper.teacherDetail.name',
+                '职称': 'teacherWrapper.title',
+                '学院': 'teacherWrapper.college',
+            }
         }
     },
     created() {

@@ -52,7 +52,19 @@
                     ></el-option>
                 </el-select>
             </el-form-item>
-            <el-button @click="createTask" type="primary">创建任务</el-button>
+            <el-form-item>
+                <el-button @click="createTask" type="primary">创建任务</el-button>
+            </el-form-item>
+            <el-form-item>
+                <json-excel
+                    class = "export-excel-wrapper"
+                    :data="tasks"
+                    :fields="json_fields"
+                    name="filename.xls"
+                >
+                    <el-button type="primary">导出</el-button>
+                </json-excel>
+            </el-form-item>
         </el-form>
         <el-table
             :data="tasks"
@@ -138,6 +150,7 @@
 <script>
 import { Table, TableColumn, Form, FormItem, Input, Select, Option, Button } from 'element-ui';
 import CreateTaskDialog from './components/create-task-dialog.vue';
+import JsonExcel from 'vue-json-excel';
 
 import { getCollegeTask } from '@/services/college.js';
 import { getDepartmentTeachers } from '@/services/department.js';
@@ -153,6 +166,7 @@ export default {
         ElOption: Option,
         ElButton: Button,
         CreateTaskDialog,
+        JsonExcel,
     },
     data() {
         return {
@@ -165,6 +179,23 @@ export default {
             tasks: [],
             teachers: [],
             showCreateTaskDialog: false,
+            json_fields: {
+                '课程老师': 'teacherName',
+                '课程所属学院': 'courseCollege',
+                '课程老师职级': 'teacherTitle',
+                '课程代码': 'courseCode',
+                '课程名称': 'courseName',
+                '课程类型': 'type',
+                '学生人数': 'studentNumbs',
+                '学时': 'hours',
+                '专业': 'major',
+                '班级': 'grade',
+                '班级': 'classes',
+                '学期': 'semester',
+                '插入时间': 'insertTime',
+                '更新时间': 'updateTime',
+                '工作量': 'workload',
+            }
         }
     },
     computed: {

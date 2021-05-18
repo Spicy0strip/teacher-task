@@ -11,6 +11,20 @@
                 <p>教学科研并重型，要求140学时/学期</p>
             </template>
         </el-alert>
+        <el-form
+            :inline="true"
+        >
+            <el-form-item>
+                <json-excel
+                    class = "export-excel-wrapper"
+                    :data="assesses"
+                    :fields="json_fields"
+                    name="filename.xls"
+                >
+                    <el-button type="primary">导出</el-button>
+                </json-excel>
+            </el-form-item>
+        </el-form>
         <el-table
             :data="assesses"
             :loading="loading"
@@ -58,7 +72,9 @@
     </div>
 </template>
 <script>
-import { Table, TableColumn, Link, Message, MessageBox, Alert } from 'element-ui';
+import { Table, TableColumn, Link, Message, MessageBox, Alert, Form, FormItem, Button } from 'element-ui';
+import JsonExcel from 'vue-json-excel';
+
 import { assessTeacher, getAssesses } from '@/services/college.js';
 export default {
     name: 'college-assess',
@@ -67,11 +83,23 @@ export default {
         ElTableColumn: TableColumn,
         ElLink: Link,
         ElAlert: Alert,
+        ElForm: Form,
+        ElFormItem: FormItem,
+        ElButton: Button,
+        JsonExcel,
     },
     data() {
         return {
             loading: false,
             assesses: [],
+            json_fields: {
+                '工号': 'jobNumber',
+                '姓名': 'name',
+                '学期': 'semester',
+                '当前学时': 'realHours',
+                '要求学时': 'shouldHours',
+                '是否达标': 'reach',
+            },
         }
     },
     created() {
