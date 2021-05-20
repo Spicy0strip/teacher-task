@@ -15,7 +15,7 @@ export async function getProfile(params) {
 }
 
 export async function checkAssess(params) {
-    return await $http.get('/api//queryAssess', { params });
+    return await $http.get('/api/queryAssess', { params });
 }
 
 export async function verifyAssess(params) {

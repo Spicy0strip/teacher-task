@@ -86,7 +86,7 @@ export default {
             this.data = res.data.data;
         },
         async submitAssess() {
-            const res = await checkAssess({
+            const res = await verifyAssess({
                 id: this.data.id,
             })
             const { code, data, message } = res.data;
