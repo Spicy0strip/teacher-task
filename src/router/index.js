@@ -48,6 +48,12 @@ export default new Router({
                             name: 'college-assess',
                             component: (() =>
                     import(/* webpackChunkName: 'college' */ '@/modules/college/pages/college-assess.vue')),
+                        },
+                        {
+                            path: 'appeal',
+                            name: 'college-appeal',
+                            component: (() =>
+                    import(/* webpackChunkName: 'college' */ '@/modules/college/pages/college-appeal.vue')),
                         }
                     ]
                 },

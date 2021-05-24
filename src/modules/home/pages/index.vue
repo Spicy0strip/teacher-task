@@ -29,6 +29,10 @@
                     <i class="teacher">&#xe603;</i>
                     <span>考核</span>
                 </el-menu-item>
+                <el-menu-item index="college-appeal" route="/college/appeal">
+                    <i class="teacher">&#xe603;</i>
+                    <span>申诉</span>
+                </el-menu-item>
             </el-submenu>
             <el-submenu :disabled="userInfo.loginLevel !== 4" index="unassign-task">
                 <template slot="title">

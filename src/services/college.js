@@ -50,3 +50,15 @@ export async function getAssesses(params) {
 export async function assessTeacher(body) {
     return await $http.post('/api/assess', body);
 }
+
+export async function getAppeals(params) {
+    return await $http.get('/api/queryAppeal', { params });
+}
+
+export async function refuseAppeal(params) {
+    return await $http.get('/api/disagreeAppeal', { params });
+}
+
+export async function agreeAppeal(params) {
+    return await $http.get('/api/agreeAppeal', { params });
+}

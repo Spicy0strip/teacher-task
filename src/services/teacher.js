@@ -21,3 +21,7 @@ export async function checkAssess(params) {
 export async function verifyAssess(params) {
     return await $http.get('/api/verifyAssess', { params })
 }
+
+export async function appeal(params) {
+    return await $http.get('/api/appeal', { params });
+}
